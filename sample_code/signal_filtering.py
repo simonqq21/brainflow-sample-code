@@ -37,8 +37,9 @@ def main():
     for count, channel in enumerate(eeg_channels):
         # filters work in-place
         if count == 0:
-            DataFilter.perform_bandpass(data[channel], BoardShim.get_sampling_rate(board_id), 2.0, 50.0, 4,
-                                        FilterTypes.BESSEL_ZERO_PHASE, 0)
+            print(data[channel].shape)
+            DataFilter.perform_bandpass(data[channel], BoardShim.get_sampling_rate(board_id), 1.0, 5.0, 4,
+                                        FilterTypes.BUTTERWORTH, 1)
         elif count == 1:
             DataFilter.perform_bandstop(data[channel], BoardShim.get_sampling_rate(board_id), 48.0, 52.0, 3,
                                         FilterTypes.BUTTERWORTH_ZERO_PHASE, 0)
